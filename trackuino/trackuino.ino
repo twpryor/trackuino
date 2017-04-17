@@ -40,6 +40,7 @@
 #include "aprs.h"
 #include "buzzer.h"
 #include "gps.h"
+#include "ozone.h"
 #include "pin.h"
 #include "power.h"
 #include "sensors_avr.h"

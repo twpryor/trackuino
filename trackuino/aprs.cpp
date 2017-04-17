@@ -74,6 +74,9 @@ void aprs_send()
   ax25_send_string("/Te=");
   snprintf(temp, 6, "%d", sensors_ext_lm60());
   ax25_send_string(temp);
+  \\ Pressure sensor data
+  ax25_send_string("/P=");
+  snprintf("PRESSUREDATA");
   ax25_send_string("/V=");
   snprintf(temp, 6, "%d", sensors_vin());
   ax25_send_string(temp);
