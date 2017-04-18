@@ -74,6 +74,9 @@ void setup()
   afsk_setup();
   gps_setup();
   sensors_setup();
+  ozone_setup();
+  pressure_setup();
+  UV_setup();
 
 #ifdef DEBUG_SENS
   Serial.print("Ti=");
