@@ -1,6 +1,12 @@
 
-#ifndef __UV_H__
-#define __UV_H__
 
-int UVOUT_PIN;
-int REF_3V3_PIN;
+#ifndef UV_h
+#define UV_H
+
+void uv_setup();
+int uv_measure();
+
+#define UV_PIN A5
+
+
+#endif

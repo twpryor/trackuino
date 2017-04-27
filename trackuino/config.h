@@ -82,7 +82,7 @@
 // 00:02:00, etc. and the second balloon will transmit at 00:00:30, 00:01:30,
 // 00:02:30, etc.
 #define APRS_SLOT     0     // seconds. -1 disables slotted transmissions
-#define APRS_PERIOD   60    // seconds
+#define APRS_PERIOD   15    // seconds
 
 // GPS baud rate (in bits per second). This is also the baud rate at which
 // debug data will be printed out the serial port.
@@ -146,7 +146,7 @@
 
 // Units for temperature sensors (Added by: Kyle Crockett)
 // 1 = Celsius, 2 = Kelvin, 3 = Fahrenheit
-#define TEMP_UNIT 1
+#define TEMP_UNIT 3
 
 // Calibration value in the units selected. Use integer only.
 #define CALIBRATION_VAL 0
@@ -175,7 +175,7 @@
 #define BUZZER_FREQ             895     // Hz
 
 // These are the number of seconds the buzzer will stay on/off alternately
-#define BUZZER_ON_TIME          1       // secs
+#define BUZZER_ON_TIME          0.3       // secs
 #define BUZZER_OFF_TIME         2       // secs
 
 // This option disables the buzzer above BUZZER_ALTITUDE meters. This is a

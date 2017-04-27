@@ -45,6 +45,7 @@
 #include "power.h"
 #include "sensors_avr.h"
 #include "sensors_pic32.h"
+#include "uv.h"
 
 // Arduino/AVR libs
 #if (ARDUINO + 1) >= 100
@@ -74,9 +75,9 @@ void setup()
   afsk_setup();
   gps_setup();
   sensors_setup();
-  ozone_setup();
-  pressure_setup();
-  UV_setup();
+//  ozone_setup();
+//  pressure_setup();
+  uv_setup();
 
 #ifdef DEBUG_SENS
   Serial.print("Ti=");
