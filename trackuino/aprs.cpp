@@ -23,6 +23,7 @@
 #include "sensors_pic32.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "uv.h"
 #if (ARDUINO + 1) >= 100
 #  include <Arduino.h>
 #else
@@ -40,6 +41,7 @@ float meters_to_feet(float m)
 void aprs_send()
 {
   char temp[12];                   // Temperature (int/ext)
+  char uv[6];
   const struct s_address addresses[] = { 
     {D_CALLSIGN, D_CALLSIGN_ID},  // Destination callsign
     {S_CALLSIGN, S_CALLSIGN_ID},  // Source callsign (-11 = balloon, -9 = car)
@@ -78,9 +80,9 @@ void aprs_send()
 // ax25_send_string("/P=");
 //  snprintf("PRESSUREDATA");
 
-// Temperature sensor data
+// UV sensor data
   ax25_send_string("/UV=");
-  snprintf(uv_read, 6, "%d", uv_measure());
+  snprintf(uv, 6, "%d", uv_measure());
   ax25_send_string("/V=");
   snprintf(temp, 6, "%d", sensors_vin());
   ax25_send_string(temp);
