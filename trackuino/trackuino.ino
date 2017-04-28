@@ -60,6 +60,7 @@ static const uint32_t VALID_POS_TIMEOUT = 2000;  // ms
 // Module variables
 static int32_t next_aprs = 0;
 
+bool data = true;
 
 void setup()
 {
@@ -137,7 +138,13 @@ void loop()
   // Time for another APRS frame
   if ((int32_t) (millis() - next_aprs) >= 0) {
     get_pos();
-    aprs_send();
+    if (data){
+        aprs1_send();
+        data = false;
+    } else {
+        aprs2_send();
+        data = true;
+    }
     next_aprs += APRS_PERIOD * 1000L;
     while (afsk_flush()) {
       power_save();
