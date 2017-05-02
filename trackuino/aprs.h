@@ -18,7 +18,6 @@
 #ifndef __APRS_H__
 #define __APRS_H__
 
-void aprs1_send();
-void aprs2_send();
+void aprs_send();
 
 #endif

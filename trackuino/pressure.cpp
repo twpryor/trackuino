@@ -4,7 +4,7 @@
 #include "config.h"
 #include "pressure.h"
 #if (ARDUINO + 1) >= 100
-#  include <Arduino.h>
+#include <Arduino.h>
 #else
 #include <WProgram.h>
 #endif
@@ -20,7 +20,7 @@ void pressure_setup()
 int pressure_measure()
 {
     int pressure_read = 0;
-    uv_read = analogRead(A5);
-    return uv_read;
+    pressure_read = analogRead(A5);
+    return pressure_read;
 }
 

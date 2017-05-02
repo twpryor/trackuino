@@ -13,12 +13,15 @@
 
 void uv_setup()
 {
-    pinMode(A5, INPUT);
+    pinMode(REF_3V3, INPUT);
+    pinMode(UV_PIN, INPUT);
 }
 
-int uv_measure()
+float uv_measure()
 {
-    int uv_read = 0;
-    uv_read = analogRead(A5);
-    return uv_read;
+    int uvLevel = analogRead(UV_PIN);
+    int refLevel = analogRead(REF_3V3);
+    float outputVoltage = 3.3 / refLevel * uvLevel;
+    float uvIntensity = map(outputVoltage, 0.99, 2.8, 0.0, 15.0); //Convert the voltage to a UV intensity level
+    return uvIntensity;
 }

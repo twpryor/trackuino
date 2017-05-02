@@ -32,7 +32,6 @@
 
 #endif
 
-
 // Trackuino custom libs
 #include "config.h"
 #include "afsk_avr.h"
@@ -138,13 +137,7 @@ void loop()
   // Time for another APRS frame
   if ((int32_t) (millis() - next_aprs) >= 0) {
     get_pos();
-    if (data){
-        aprs1_send();
-        data = false;
-    } else {
-        aprs2_send();
-        data = true;
-    }
+    aprs_send();
     next_aprs += APRS_PERIOD * 1000L;
     while (afsk_flush()) {
       power_save();
