@@ -6,7 +6,6 @@
 void uv_setup();
 float uv_measure();
 
-#define UV_PIN A5
-#define REF_3V3 A4
+#define UV_PIN A2
 
 #endif
