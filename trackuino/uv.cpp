@@ -18,7 +18,25 @@ void uv_setup()
 
 float uv_measure()
 {
-    int uvLevel = analogRead(UV_PIN);
-    float uvIntensity = map(uvLevel, 0.99, 2.8, 0.0, 15.0); //Convert the voltage to a UV intensity level
+    int uvLevel = averageAnalogRead(UV_PIN);
+    float outputVoltage = uvLevel;
+    float uvIntensity = mapfloat(outputVoltage, 0.99, 2.8, 0.0, 15.0); //Convert the voltage to a UV intensity level
     return uvIntensity;
+}
+
+int averageAnalogRead(int pinToRead)
+{
+  byte numberOfReadings = 8;
+  unsigned int runningValue = 0; 
+
+  for(int x = 0 ; x < numberOfReadings ; x++)
+    runningValue += analogRead(pinToRead);
+  runningValue /= numberOfReadings;
+
+  return(runningValue);  
+}
+
+float mapfloat(float x, float in_min, float in_max, float out_min, float out_max)
+{
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }

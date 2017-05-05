@@ -82,7 +82,7 @@ void aprs_send()
   ax25_send_string(temp);
   // External Pressure
   ax25_send_string("/P=");
-  snprintf(temp, 11, "%f", pressure_measure());
+  dtostrf(pressure_measure(), 6, 0, temp);
   ax25_send_string(temp);
   // Ozone Concentration
   ax25_send_string("/O=");
@@ -90,7 +90,7 @@ void aprs_send()
   ax25_send_string(temp);
   // UV Radiation
   ax25_send_string("/UV=");
-  snprintf(temp, 6, "%d", uv_measure());
+  dtostrf(uv_measure(), 4, 0, temp);
   ax25_send_string(temp);
   ax25_send_byte(' ');
   ax25_send_footer();

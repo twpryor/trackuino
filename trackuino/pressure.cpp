@@ -22,7 +22,11 @@ float pressure_measure(){
     myPressure.setModeBarometer(); // Measure pressure in Pascals from 20 to 110 kPa
     myPressure.setOversampleRate(7); // Set Oversample to the recommended 128
     myPressure.enableEventFlags(); // Enable all three pressure and temp event flags
-    float pressure = myPressure.readPressure() / 1000;
+    float pressure = myPressure.readPressure();
+    /*while(100000 <= pressure) pressure /= 10;
+    while(pressure < 10000) pressure *= 10;
+    pressure = round(pressure);
+    if(100000 <= pressure) pressure = round(pressure/10);*/
     return pressure;
 }
 

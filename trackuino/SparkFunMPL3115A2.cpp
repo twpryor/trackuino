@@ -134,7 +134,7 @@ float MPL3115A2::readPressure()
 
 	float pressure = (float)pressure_whole + pressure_decimal;
 
-	return(pressure);
+	return(pressure_whole);
 }
 
 float MPL3115A2::readTemp()
