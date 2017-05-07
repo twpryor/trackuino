@@ -80,7 +80,6 @@ void aprs_send()
   ax25_send_string("/Te=");
   snprintf(temp, 6, "%d", sensors_ext_lm60());
   ax25_send_string(temp);
-  // External Pressure
   ax25_send_string("/P=");
   dtostrf(pressure_measure(), 6, 0, temp);
   ax25_send_string(temp);
@@ -90,8 +89,9 @@ void aprs_send()
   ax25_send_string(temp);
   // UV Radiation
   ax25_send_string("/UV=");
-  dtostrf(uv_measure(), 4, 0, temp);
+  snprintf(temp, 6, "%d", uv_measure());
   ax25_send_string(temp);
+  // External Pressure
   ax25_send_byte(' ');
   ax25_send_footer();
   ax25_flush_frame();                 // Tell the modem to go
