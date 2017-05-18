@@ -120,5 +120,20 @@ int sensors_int_lm60()
   return sensors_lm60(INTERNAL_LM60_VS_PIN, INTERNAL_LM60_VOUT_PIN);
 }
 
+int sensors_vin()
+{
+  analogReference(DEFAULT);      // Ref=5V
+  analogRead(VMETER_PIN);        // Disregard the 1st conversion after changing ref (p.256)
+  delay(10);                     // This is needed when switching references
+
+  uint16_t adc = analogRead(VMETER_PIN); 
+  uint16_t mV = 5000L * adc / 1024;
+   
+  // Vin = mV * R2 / (R1 + R2)
+  int vin = (uint32_t)mV * (VMETER_R1 + VMETER_R2) / VMETER_R2;
+  return vin;
+}
+
+
 #endif
 #endif // ifdef AVR

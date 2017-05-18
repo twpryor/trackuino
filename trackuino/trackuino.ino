@@ -39,12 +39,10 @@
 #include "aprs.h"
 #include "buzzer.h"
 #include "gps.h"
-#include "ozone.h"
 #include "pin.h"
 #include "power.h"
 #include "sensors_avr.h"
 #include "sensors_pic32.h"
-#include "uv.h"
 
 // Arduino/AVR libs
 #if (ARDUINO + 1) >= 100

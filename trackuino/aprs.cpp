@@ -19,14 +19,11 @@
 #include "ax25.h"
 #include "gps.h"
 #include "aprs.h"
-#include "ozone.h"
 #include "pressure.h"
 #include "sensors_avr.h"
 #include "sensors_pic32.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "uv.h"
-#include <Wire.h>
 #if (ARDUINO + 1) >= 100
 #  include <Arduino.h>
 #else
@@ -80,18 +77,14 @@ void aprs_send()
   ax25_send_string("/Te=");
   snprintf(temp, 6, "%d", sensors_ext_lm60());
   ax25_send_string(temp);
+  // External Pressure
   ax25_send_string("/P=");
   dtostrf(pressure_measure(), 6, 0, temp);
   ax25_send_string(temp);
-  // Ozone Concentration
-  ax25_send_string("/O=");
-  snprintf(temp, 6, "%d", ozone_measure());
+  // Battery Voltage
+  ax25_send_string("/V=");
+  snprintf(temp, 6, "%d", sensors_vin());
   ax25_send_string(temp);
-  // UV Radiation
-  ax25_send_string("/UV=");
-  snprintf(temp, 6, "%d", uv_measure());
-  ax25_send_string(temp);
-  // External Pressure
   ax25_send_byte(' ');
   ax25_send_footer();
   ax25_flush_frame();                 // Tell the modem to go
